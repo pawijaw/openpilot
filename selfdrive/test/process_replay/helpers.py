@@ -5,7 +5,7 @@ import uuid
 from common.params import Params
 
 class OpenpilotPrefix(object):
-  def __init__(self, prefix: str = None) -> None:
+  def __init__(self, prefix: str | None = None) -> None:
     self.prefix = prefix if prefix else str(uuid.uuid4())
     self.msgq_path = os.path.join('/dev/shm', self.prefix)
 
