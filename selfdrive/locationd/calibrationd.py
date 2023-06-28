@@ -73,7 +73,8 @@ class Calibrator:
 
     if param_put and calibration_params:
       try:
-        msg = log.Event.from_bytes(calibration_params)
+        with log.Event.from_bytes(calibration_params) as m:
+          msg = m
         rpy_init = np.array(msg.liveCalibration.rpyCalib)
         valid_blocks = msg.liveCalibration.validBlocks
         wide_from_device_euler = np.array(msg.liveCalibration.wideFromDeviceEuler)
