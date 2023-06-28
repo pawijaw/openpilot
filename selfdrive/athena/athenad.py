@@ -790,8 +790,6 @@ def main():
     except (ConnectionError, TimeoutError, WebSocketException):
       conn_retries += 1
       params.remove("LastAthenaPingTime")
-    except socket.timeout:
-      params.remove("LastAthenaPingTime")
     except Exception:
       cloudlog.exception("athenad.main.exception")
 
