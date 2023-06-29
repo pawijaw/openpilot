@@ -113,8 +113,7 @@ class Laikad:
 
     nav_dict = {}
     try:
-      with ephemeris_structs.EphemerisCache.from_bytes(cache_bytes) as m:
-        ephem_cache = m
+      ephem_cache = ephemeris_structs.EphemerisCache.from_bytes(cache_bytes)
       glonass_navs = [GLONASSEphemeris(data_struct, file_name=EPHEMERIS_CACHE) for data_struct in ephem_cache.glonassEphemerides]
       gps_navs = [GPSEphemeris(data_struct, file_name=EPHEMERIS_CACHE) for data_struct in ephem_cache.gpsEphemerides]
       for e in sum([glonass_navs, gps_navs], []):
