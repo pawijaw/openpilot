@@ -790,6 +790,10 @@ def main():
     except (ConnectionError, TimeoutError, WebSocketException):
       conn_retries += 1
       params.remove("LastAthenaPingTime")
+    # TODO: socket.timeout and TimeoutError are now the same exception since python3.10
+    # Remove the socket.timeout case once we have fully moved to python3.11
+    except socket.timeout: # pylint: disable=duplicate-except
+      params.remove("LastAthenaPingTime")
     except Exception:
       cloudlog.exception("athenad.main.exception")
 
